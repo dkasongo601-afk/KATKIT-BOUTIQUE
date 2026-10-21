@@ -1,0 +1,12 @@
+BASE DE DONNÉES — KATKIT
+
+1. Ouvrez le tableau de bord Supabase du projet racvwxoiwhyblmvmldkc.
+2. Ouvrez SQL Editor, puis New query.
+3. Copiez tout SUPABASE.sql, collez et cliquez RUN.
+4. Dans Table Editor, vérifiez katkit_products et katkit_sales.
+5. Lancez KATKIT, créez un compte puis ajoutez un produit test.
+6. Enregistrez une vente test et vérifiez que le stock baisse et que la vente apparaît.
+7. Les données sont isolées par utilisateur. Pour que plusieurs comptes partagent une même boutique,
+   il faudra mettre en place une structure boutiques/employés et leurs permissions.
+
+MISE À JOUR CLIENTS ET DETTES : dans Supabase > SQL Editor, exécutez le fichier SUPABASE.sql mis à jour pour créer katkit_customers et katkit_debts. Les clients et dettes sont protégés par RLS et séparés par compte utilisateur.

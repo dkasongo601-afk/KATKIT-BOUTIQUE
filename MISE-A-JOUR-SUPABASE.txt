@@ -1,0 +1,10 @@
+MISE À JOUR KATKIT — DÉPENSES, PRIX D'ACHAT ET VENTES MULTI-ARTICLES
+
+1. Ouvrez Supabase > SQL Editor > New query.
+2. Ouvrez le fichier SUPABASE.sql du ZIP, copiez TOUT son contenu et collez-le dans SQL Editor.
+3. Cliquez Run et attendez le message de réussite.
+4. Déployez ensuite les fichiers du ZIP sur Vercel (ou remplacez les fichiers de votre projet GitHub), puis attendez la fin du déploiement.
+
+Les anciens produits reçoivent un prix d'achat de 0 par défaut : modifiez chaque produit pour saisir son vrai prix d'achat. Les nouvelles ventes enregistrent le coût d'achat au moment de la vente. Le reçu client n'affiche que les prix de vente, jamais les prix d'achat ni le bénéfice.
+
+Le bénéfice estimé est calculé comme suit : total des ventes - coût d'achat des articles vendus - dépenses enregistrées. Les dettes clients restent suivies dans leur page dédiée.

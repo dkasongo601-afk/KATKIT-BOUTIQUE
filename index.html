@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#ffcc00"><title>KATKIT — Gestion de boutique</title>
+<link rel="icon" href="icon.png"><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="toast" role="status"></div>
+<section id="authView" class="auth-wrap">
+ <div class="auth-card">
+  <div class="logo-area"><img src="LOGO-KATKIT.png" alt="Logo KATKIT"><h1>KATKIT</h1><p>Votre boutique, notre priorité</p></div>
+  <div class="auth-content">
+   <h2 id="authHeading">Connexion à votre compte</h2><p class="sub">Connectez-vous pour gérer votre boutique</p>
+   <div class="auth-tabs"><button class="active" data-mode="login">Se connecter</button><button data-mode="signup">Créer un compte</button></div>
+   <form id="authForm">
+    <label id="accountNameWrap" class="hidden">Nom du propriétaire<input id="accountName" placeholder="Votre nom complet" autocomplete="name"></label>
+    <label id="shopLabelWrap" class="hidden">Nom de la boutique<input id="shopName" placeholder="Ex. KATKIT Fashion"></label>
+    <label>Adresse e-mail<input id="email" type="email" required autocomplete="email" placeholder="vous@exemple.com"></label>
+    <label>Mot de passe<input id="password" type="password" minlength="6" required autocomplete="current-password" placeholder="Au moins 6 caractères"></label>
+    <button id="authSubmit" class="btn yellow full" type="submit">Se connecter</button>
+   </form>
+   <button id="forgotBtn" class="link">Mot de passe oublié ?</button>
+   <p class="note">Accédez à vos ventes, produits et stocks depuis vos appareils.</p>
+  </div>
+ </div>
+</section>
+<div id="appView" class="layout hidden">
+ <aside class="sidebar">
+  <div class="brand"><img src="LOGO-KATKIT.png" alt=""><div><b>KATKIT</b><small>GESTION DE BOUTIQUE</small></div></div>
+  <nav>
+   <button class="nav active" data-page="dashboard"><span>▦</span>Tableau de bord</button>
+   <button class="nav" data-page="products"><span>▣</span>Produits</button>
+   <button class="nav" data-page="sales"><span>＋</span>Ventes</button>
+   <button class="nav" data-page="expenses"><span>−</span>Dépenses</button>
+   <button class="nav" data-page="stock"><span>◫</span>Stocks</button>
+   <button class="nav" data-page="customers"><span>♙</span>Clients</button>
+   <button class="nav" data-page="debts"><span>₣</span>Dettes</button>
+   <button class="nav" data-page="reports"><span>▥</span>Rapports</button>
+   <button class="nav" data-page="settings"><span>⚙</span>Paramètres</button>
+  </nav>
+  <div class="side-bottom"><span class="avatar">K</span><div class="user-info"><b id="userEmail">Compte</b><small id="userShop">Ma boutique</small></div><button id="logoutBtn" title="Déconnexion">↪</button></div>
+ </aside>
+ <main class="main">
+  <header class="topbar"><div><small class="kicker">ESPACE DE GESTION</small><h2 id="pageTitle">Tableau de bord</h2></div><div class="top-right"><span id="todayDate"></span><button class="btn white" id="printBtn">Imprimer</button></div></header>
+  <section id="dashboardPage" class="page">
+   <div class="welcome"><div><h3>Bienvenue dans votre boutique 👋</h3><p>Votre activité en un coup d’œil.</p></div><span class="sync">● Données synchronisées en ligne</span></div>
+   <div class="stats">
+    <article><small>VENTES DU JOUR</small><strong id="todayTotal">0 FC</strong><span id="todayCount">0 vente(s)</span></article>
+    <article><small>DÉPENSES DU JOUR</small><strong id="todayExpenses">0 FC</strong><span>Sorties enregistrées</span></article>
+    <article><small>CHIFFRE D’AFFAIRES</small><strong id="allTotal">0 FC</strong><span>Total des ventes enregistrées</span></article>
+    <article><small>BÉNÉFICE ESTIMÉ</small><strong id="allProfit">0 FC</strong><span>Ventes − coût des articles − dépenses</span></article>
+    <article><small>STOCK TOTAL</small><strong id="stockCount">0</strong><span id="lowCount">0 stock faible</span></article>
+   </div>
+   <div class="panel"><div class="panel-head"><div><h3>Ventes récentes</h3><p>Dernières opérations enregistrées</p></div><button class="btn white" data-goto="reports">Voir les rapports</button></div>
+    <div class="table-wrap"><table><thead><tr><th>Date</th><th>Produit</th><th>Client</th><th>Quantité</th><th>Total</th></tr></thead><tbody id="recentSales"><tr><td colspan="5" class="empty">Aucune vente pour le moment.</td></tr></tbody></table></div>
+   </div>
+  </section>
+  <section id="productsPage" class="page hidden"><div class="panel">
+   <div class="panel-head"><div><h3>Gestion des produits</h3><p>Ajoutez et mettez à jour votre catalogue.</p></div><button id="showProductForm" class="btn yellow">＋ Ajouter un produit</button></div>
+   <form id="productForm" class="form-grid hidden"><input id="productId" type="hidden">
+    <label>Nom du produit<input id="productName" required placeholder="Ex. T-shirt Homme"></label>
+    <label>Catégorie<input id="productCategory" placeholder="Vêtements, chaussures…"></label>
+    <label>Prix d’achat (FC)<input id="productCost" type="number" min="0" step="1" required></label>
+    <label>Prix de vente (FC)<input id="productPrice" type="number" min="0" step="1" required></label>
+    <label>Quantité en stock<input id="productStock" type="number" min="0" step="1" required></label>
+    <div class="form-actions"><button class="btn yellow" type="submit">Enregistrer</button><button class="btn white" id="cancelProduct" type="button">Annuler</button></div>
+   </form>
+   <div class="toolbar"><input id="productSearch" placeholder="Rechercher un produit…"><span id="productCount"></span></div>
+   <div class="table-wrap"><table><thead><tr><th>Produit</th><th>Catégorie</th><th>Prix d’achat</th><th>Prix de vente</th><th>Stock</th><th>Actions</th></tr></thead><tbody id="productsTable"></tbody></table></div>
+  </div></section>
+  <section id="salesPage" class="page hidden"><div class="panel sale-panel"><div class="panel-head"><div><h3>Nouvelle vente</h3><p>Sélectionnez plusieurs articles : le total se calcule automatiquement.</p></div></div>
+   <form id="saleForm" class="sale-form"><label>Client (facultatif)<select id="saleCustomer"><option value="">Client de passage</option></select></label>
+    <div class="cart-add"><label>Produit<select id="saleProduct" required><option value="">Choisir un produit</option></select></label><label>Quantité<input id="saleQty" type="number" min="1" step="1" value="1" required></label><button class="btn yellow" id="addCartItem" type="button">Ajouter l’article</button></div>
+    <div class="table-wrap"><table><thead><tr><th>Article</th><th>Qté</th><th>Prix unitaire</th><th>Total</th><th></th></tr></thead><tbody id="cartTable"><tr><td colspan="5" class="empty">Aucun article sélectionné.</td></tr></tbody></table></div>
+    <div class="total-box"><span>TOTAL À PAYER</span><strong id="saleTotal">0 FC</strong></div><button class="btn yellow full" type="submit">Enregistrer la vente et imprimer le reçu</button></form></div></section>
+  <section id="expensesPage" class="page hidden"><div class="panel"><div class="panel-head"><div><h3>Gestion des dépenses</h3><p>Enregistrez les sorties d’argent de votre boutique.</p></div><button id="showExpenseForm" class="btn yellow">＋ Ajouter une dépense</button></div>
+   <form id="expenseForm" class="form-grid hidden"><input id="expenseId" type="hidden"><label>Motif *<input id="expenseDescription" required placeholder="Transport, loyer, électricité…"></label><label>Montant (FC) *<input id="expenseAmount" type="number" min="1" step="1" required></label><label>Date *<input id="expenseDate" type="date" required></label><label>Notes<input id="expenseNotes" placeholder="Détails facultatifs"></label><div class="form-actions"><button class="btn yellow" type="submit">Enregistrer</button><button class="btn white" id="cancelExpense" type="button">Annuler</button></div></form>
+   <div class="report-cards"><div><small>DÉPENSES TOTALES</small><strong id="expenseTotal">0 FC</strong></div><div><small>DÉPENSES DU JOUR</small><strong id="expenseTodayTotal">0 FC</strong></div></div><div class="table-wrap"><table><thead><tr><th>Date</th><th>Motif</th><th>Notes</th><th>Montant</th><th>Actions</th></tr></thead><tbody id="expensesTable"></tbody></table></div></div></section>
+  <section id="stockPage" class="page hidden"><div class="panel"><div class="panel-head"><div><h3>Gestion des stocks</h3><p>Surveillez les quantités disponibles.</p></div></div><div class="table-wrap"><table><thead><tr><th>Produit</th><th>Stock actuel</th><th>Seuil minimum</th><th>État</th></tr></thead><tbody id="stockTable"></tbody></table></div></div></section>
+  <section id="customersPage" class="page hidden">
+   <div class="panel"><div class="panel-head"><div><h3>Gestion des clients</h3><p>Ajoutez, modifiez ou supprimez les clients de votre boutique.</p></div><button id="showCustomerForm" class="btn yellow">＋ Ajouter un client</button></div>
+    <form id="customerForm" class="form-grid hidden"><input id="customerId" type="hidden"><label>Nom complet *<input id="customerName" required placeholder="Nom du client"></label><label>Téléphone<input id="customerPhone" placeholder="Numéro de téléphone"></label><label>Adresse<input id="customerAddress" placeholder="Adresse du client"></label><label>Notes<input id="customerNotes" placeholder="Informations supplémentaires"></label><div class="form-actions"><button class="btn yellow" type="submit">Enregistrer le client</button><button class="btn white" id="cancelCustomer" type="button">Annuler</button></div></form>
+    <div class="toolbar"><input id="customerSearch" placeholder="Rechercher un client…"></div><div class="table-wrap"><table><thead><tr><th>Nom du client</th><th>Téléphone</th><th>Adresse</th><th>Actions</th></tr></thead><tbody id="customersTable"></tbody></table></div>
+   </div>
+  </section>
+  <section id="debtsPage" class="page hidden"><div class="panel"><div class="panel-head"><div><h3>Gestion des dettes</h3><p>Enregistrez les achats à crédit et les remboursements.</p></div><button id="showDebtForm" class="btn yellow">＋ Ajouter une dette</button></div>
+   <form id="debtForm" class="form-grid hidden"><label>Client *<select id="debtCustomer" required><option value="">Choisir un client</option></select></label><label>Motif / article *<input id="debtDescription" required placeholder="Article ou motif de la dette"></label><label>Montant total (FC) *<input id="debtAmount" type="number" min="1" step="1" required></label><label>Montant déjà payé (FC)<input id="debtPaid" type="number" min="0" step="1" value="0" required></label><label>Date limite<input id="debtDue" type="date"></label><div class="form-actions"><button class="btn yellow" type="submit">Enregistrer la dette</button><button class="btn white" id="cancelDebt" type="button">Annuler</button></div></form>
+   <div class="report-cards"><div><small>TOTAL DES DETTES</small><strong id="debtTotal">0 FC</strong></div><div><small>RESTE À PAYER</small><strong id="debtRemaining">0 FC</strong></div><div><small>DETTES EN COURS</small><strong id="debtCount">0</strong></div></div>
+   <div class="table-wrap"><table><thead><tr><th>Client</th><th>Motif</th><th>Montant</th><th>Déjà payé</th><th>Reste</th><th>Échéance</th><th>Actions</th></tr></thead><tbody id="debtsTable"></tbody></table></div>
+  </div></section>
+  <section id="reportsPage" class="page hidden"><div class="panel"><div class="panel-head"><div><h3>Rapports de ventes</h3><p>Résumé des ventes sauvegardées.</p></div><button id="exportBtn" class="btn white">Exporter CSV</button></div><div class="report-cards"><div><small>VENTES TOTALES</small><strong id="reportRevenue">0 FC</strong></div><div><small>NOMBRE DE VENTES</small><strong id="reportCount">0</strong></div><div><small>ARTICLES VENDUS</small><strong id="reportItems">0</strong></div></div><div class="table-wrap"><table><thead><tr><th>Date</th><th>Produit</th><th>Client</th><th>Quantité</th><th>Total</th><th>Actions</th></tr></thead><tbody id="reportsTable"></tbody></table></div></div></section>
+  <section id="settingsPage" class="page hidden"><div class="panel settings-panel"><h3>Paramètres de la boutique</h3><p class="muted">Personnalisez les informations affichées sur votre compte.</p><form id="settingsForm"><label>Nom de la boutique<input id="settingsShop" required placeholder="Nom de votre boutique"></label><label>Logo de la boutique (image PNG/JPG)<input id="settingsLogoFile" type="file" accept="image/png,image/jpeg,image/webp"></label><div class="logo-settings-preview"><img id="settingsLogoPreview" src="LOGO-KATKIT.png" alt="Aperçu du logo"><button id="removeLogoBtn" class="btn white" type="button">Retirer le logo</button></div><label>Devise<select id="currency"><option value="CDF">Franc congolais (FC)</option><option value="USD">Dollar américain ($)</option></select></label><button class="btn yellow" type="submit">Enregistrer les paramètres</button></form></div></section>
+  <footer>KATKIT · Une gestion simple, rapide et sécurisée pour votre boutique.</footer>
+ </main>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="supabase.js"></script><script src="script.js"></script>
+</body></html>

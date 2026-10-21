@@ -1,0 +1,33 @@
+{
+  "name": "katkit-gestion-boutique",
+  "version": "1.0.0",
+  "description": "KATKIT — Application de gestion de boutique avec Supabase",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build:win": "electron-builder --win"
+  },
+  "devDependencies": {
+    "electron": "^37.10.3",
+    "electron-builder": "^26.0.12"
+  },
+  "build": {
+    "appId": "cd.katkit.gestion",
+    "productName": "KATKIT",
+    "files": [
+      "index.html",
+      "style.css",
+      "script.js",
+      "supabase.js",
+      "main.js",
+      "LOGO-KATKIT.png",
+      "icon.png",
+      "ICONE.ico",
+      "package.json"
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "ICONE.ico"
+    }
+  }
+}
