@@ -8,3 +8,12 @@ MISE À JOUR KATKIT — DÉPENSES, PRIX D'ACHAT ET VENTES MULTI-ARTICLES
 Les anciens produits reçoivent un prix d'achat de 0 par défaut : modifiez chaque produit pour saisir son vrai prix d'achat. Les nouvelles ventes enregistrent le coût d'achat au moment de la vente. Le reçu client n'affiche que les prix de vente, jamais les prix d'achat ni le bénéfice.
 
 Le bénéfice estimé est calculé comme suit : total des ventes - coût d'achat des articles vendus - dépenses enregistrées. Les dettes clients restent suivies dans leur page dédiée.
+
+
+SURVEILLANCE VIDÉO À DISTANCE (nouveau)
+1. Exécutez les nouvelles instructions à la fin de SUPABASE.sql dans Supabase > SQL Editor.
+2. La diffusion est une connexion WebRTC avec signalisation Realtime privée, limitée à l'identifiant du compte KATKIT connecté. Connectez les deux appareils au même compte KATKIT.
+3. Dans la boutique : ouvrez la page Caméra, cliquez Activer la caméra puis Diffuser en direct depuis cette boutique. Laissez l'onglet ouvert et l'appareil allumé.
+4. Sur le téléphone/ordinateur du propriétaire : ouvrez KATKIT, page Caméra, puis Voir la diffusion à distance.
+5. Les appareils doivent être connectés à Internet. Cette version utilise des serveurs STUN et n'inclut pas de relais TURN. Si le réseau mobile/routeur bloque les connexions directes, il faudra configurer un service TURN externe pour fiabiliser la diffusion.
+6. La caméra ne démarre qu'après autorisation explicite de l'utilisateur.

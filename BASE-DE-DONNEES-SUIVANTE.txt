@@ -10,3 +10,5 @@ BASE DE DONNÉES — KATKIT
    il faudra mettre en place une structure boutiques/employés et leurs permissions.
 
 MISE À JOUR CLIENTS ET DETTES : dans Supabase > SQL Editor, exécutez le fichier SUPABASE.sql mis à jour pour créer katkit_customers et katkit_debts. Les clients et dettes sont protégés par RLS et séparés par compte utilisateur.
+
+NOUVELLE MISE À JOUR : réexécutez SUPABASE.sql pour ajouter wholesale_price et katkit_stock_movements.

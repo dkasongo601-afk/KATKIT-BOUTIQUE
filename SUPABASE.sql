@@ -88,3 +88,37 @@ drop policy if exists "KATKIT users manage own expenses" on public.katkit_expens
 create policy "KATKIT users manage own expenses" on public.katkit_expenses for all to authenticated using(auth.uid()=user_id) with check(auth.uid()=user_id);
 grant select,insert,update,delete on public.katkit_expenses to authenticated;
 NOTIFY pgrst, 'reload schema';
+
+
+-- Mise à jour KATKIT : prix de gros/détail et historique des mouvements de stock
+alter table public.katkit_products add column if not exists wholesale_price numeric(14,2) not null default 0 check (wholesale_price >= 0);
+update public.katkit_products set wholesale_price = price where wholesale_price = 0 and price > 0;
+create table if not exists public.katkit_stock_movements (
+ id uuid primary key default gen_random_uuid(),
+ user_id uuid not null references auth.users(id) on delete cascade,
+ product_id uuid references public.katkit_products(id) on delete set null,
+ product_name text not null,
+ movement_type text not null check (movement_type in ('entry','exit','sale','return','loss','adjustment')),
+ quantity integer not null check (quantity > 0),
+ reason text,
+ created_at timestamptz not null default now()
+);
+create index if not exists katkit_stock_movements_user_date_idx on public.katkit_stock_movements(user_id, created_at desc);
+alter table public.katkit_stock_movements enable row level security;
+drop policy if exists "KATKIT users manage own stock movements" on public.katkit_stock_movements;
+create policy "KATKIT users manage own stock movements" on public.katkit_stock_movements for all to authenticated using (auth.uid() = user_id) with check (auth.uid() = user_id);
+grant select, insert, update, delete on public.katkit_stock_movements to authenticated;
+NOTIFY pgrst, 'reload schema';
+
+
+-- KATKIT : signalisation privée WebRTC pour la diffusion vidéo entre appareils du même compte
+-- Les canaux privés sont limités à l'identifiant du compte authentifié.
+-- Dans Supabase Realtime, activez les canaux privés si ce réglage est disponible.
+drop policy if exists "KATKIT own camera signals select" on realtime.messages;
+create policy "KATKIT own camera signals select" on realtime.messages
+for select to authenticated
+using (realtime.topic() = 'katkit-camera:' || (select auth.uid())::text);
+drop policy if exists "KATKIT own camera signals insert" on realtime.messages;
+create policy "KATKIT own camera signals insert" on realtime.messages
+for insert to authenticated
+with check (realtime.topic() = 'katkit-camera:' || (select auth.uid())::text);

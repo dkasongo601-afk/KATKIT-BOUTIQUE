@@ -8,3 +8,10 @@ INSTALLATION / MISE À JOUR
 3. Modifiez les anciens produits et saisissez leur prix d'achat réel (valeur initiale 0).
 
 Le bénéfice estimé = ventes - coût des articles vendus - dépenses. Le reçu client ne révèle pas le prix d'achat.
+
+
+MISE À JOUR STOCK ET CAMÉRA
+- Le formulaire produit contient le prix d'achat, le prix de détail, le prix de gros et le stock.
+- La page Stocks permet d'enregistrer les entrées et les sorties; les ventes diminuent le stock automatiquement.
+- Exécutez de nouveau le fichier SUPABASE.sql complet dans Supabase > SQL Editor avant de publier les fichiers. Le script utilise des colonnes/tables IF NOT EXISTS pour préserver les données existantes.
+- La caméra permet l'aperçu et l'enregistrement local en fichier vidéo sur l'appareil. La diffusion distante n'est PAS active dans ce ZIP : elle nécessite un service de streaming sécurisé et une configuration serveur supplémentaire. Ne présentez pas le bouton « Voir la diffusion » comme opérationnel.
