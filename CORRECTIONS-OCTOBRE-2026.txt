@@ -1,0 +1,10 @@
+KATKIT — CORRECTIONS
+
+1. Bouton Déconnexion visible sur ordinateur et téléphone.
+2. Dans Stocks, bouton « Gérer les produits » et action « Modifier le produit ».
+3. Tableau Produits : affichage des prix d’achat, de vente au détail et de vente en gros aligné avec les colonnes.
+4. Caméra : choix selfie/avant ou arrière (selon le matériel), affichage Portrait/Paysage.
+
+Installation : remplacer les fichiers de l’application par ceux de ce ZIP dans le dépôt GitHub puis laisser Vercel redéployer. Aucun SQL supplémentaire n’est requis pour ces corrections d’interface. Gardez votre projet Supabase et vos données existantes.
+
+Note : le choix de caméra arrière n’existe pas sur certaines webcams d’ordinateur. Le navigateur ou le téléphone peut imposer ses propres limites. La diffusion distante doit être testée entre deux appareils après publication.

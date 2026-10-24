@@ -14,3 +14,15 @@ label{display:flex;flex-direction:column;gap:8px;font-size:12px;font-weight:700;
 .cart-add{display:grid;grid-template-columns:2fr 1fr auto;gap:12px;align-items:end}.cart-add label{margin-bottom:12px}.sale-form .table-wrap{margin:10px 0 15px}.sale-form table{min-width:420px}
 @media(max-width:720px){.cart-add{grid-template-columns:1fr}.cart-add .btn{width:100%;margin-bottom:12px}}
 .logo-settings-preview{display:flex;align-items:center;gap:16px;margin:8px 0 18px}.logo-settings-preview img{width:110px;height:90px;object-fit:contain;border:1px solid #e6e6e6;border-radius:10px;padding:6px;background:#fff}.row-actions .danger,.small-btn.danger{background:#fff0ef;color:#b42318;border:1px solid #f4b5b0}.reportsTable td:last-child{min-width:140px}
+
+/* Corrections KATKIT : déconnexion visible, actions stock et réglages caméra */
+.logout-button{border:1px solid #d7b400;background:#fff4bd;color:#292400;border-radius:8px;padding:9px 11px;font-weight:700;font-size:12px;white-space:nowrap;cursor:pointer}
+.logout-top{background:#fff4bd;border:1px solid #d7b400;color:#292400}
+.camera-controls{display:flex;align-items:end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin:12px 0}
+.camera-controls label{display:flex;flex-direction:column;gap:6px;font-weight:600;font-size:12px;min-width:190px}
+.camera-controls select{padding:10px;border:1px solid var(--line);border-radius:8px;background:white}
+.orientation-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:12px}
+.camera-video{display:block;width:100%;max-height:70vh;object-fit:contain;background:#111;border-radius:12px;margin-top:16px;transition:aspect-ratio .2s}
+.camera-video.landscape{aspect-ratio:16/9}
+.camera-video.portrait{width:min(100%,420px);aspect-ratio:9/16;max-height:70vh;margin-left:auto;margin-right:auto}
+@media(max-width:720px){.side-bottom{display:flex}.user-info{display:none}.logout-button{font-size:11px;padding:8px}.topbar{flex-wrap:wrap}.top-right{flex-direction:row;align-items:center;flex-wrap:wrap}.logout-top{display:inline-flex}.camera-video.portrait{width:min(100%,300px)}}

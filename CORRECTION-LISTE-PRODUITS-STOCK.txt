@@ -1,0 +1,7 @@
+CORRECTION KATKIT — LISTE DES PRODUITS DANS LES STOCKS
+
+Cette version actualise la liste déroulante Produit à l’ouverture de Gestion des stocks et lorsque vous cliquez sur la liste. Elle recharge les produits depuis Supabase pour le compte connecté et compare les identifiants de façon robuste.
+
+Aucune table Supabase ni donnée existante n’a été supprimée ou modifiée par cette correction. Aucun nouveau SQL n’est requis.
+
+Pour publier : remplacez les fichiers du projet sur GitHub avec ceux de ce dossier, puis attendez le redéploiement Vercel. Testez ensuite Gestion des stocks > Produit. Gardez une copie de sauvegarde de votre dossier actuel.
